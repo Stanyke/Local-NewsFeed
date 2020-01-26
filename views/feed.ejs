@@ -64,16 +64,19 @@
                 <center><h1>My Feeds</h1></center>
 
                 <ul>
-                <% newsfeed.forEach(function(todo, index) { %>
-                    <li><a href="/feed/delete/<%= index %>">✘</a> <%= todo.state %> <img src="<%= todo.kimg %>" /></li>
+                <% newsfeed.forEach(function(feeds, index) { %>
+                    <li><a href="/feed/delete/<%= index %>/<%= feeds.TheImage %>/<%= feeds.TheExtension %>" title="Delete Post">✘</a> <%= feeds.TheStatus %> 
+                        <br/>
+                        <img width="50px" src="images/<%= feeds.TheImage %><%= feeds.TheExtension %>" />
+                        By: <u><%= feeds.TheUsername %></u>
+                    </li>
                 <% }); %>
                 </ul>
-
             </div>
         </div>
 
             <div class="postbar">
-                <form action="/feed/new/" method="post">
+                <form action="/feed/new/" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <textarea class="form-control" rows="4" name="mystatus" id="mystatus" placeholder="What Do You Have In Mind?" autofocus></textarea>
