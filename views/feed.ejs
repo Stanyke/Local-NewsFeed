@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Local NewsFeed</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <style>
+            body
+            {
+                background-image: linear-gradient(to right, black , #434343);
+                color : white;
+                font-family: times-new-roman;
+            }
+
+            a {text-decoration: none; color: red;}
+
+            .mainbar
+            {
+                transition: 0.5s;
+                height: auto;
+            }
+
+            .postbar
+            {
+                bottom: 0;
+                height: auto;
+                transition: 1s;
+                width: 100%;
+                position: fixed;
+                background: #434343;
+                float: left;
+                transition: 0.5s;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .postbar form
+            {
+                padding: 5px;
+            }
+
+            .postbar textarea.form-control, input[type="file"].form-control, input[type="text"].form-control
+            /*input.form-control could have simply worked instead of input[type="file"].form-control AND input[type="text"].form-control, i made it the way it is, just for you to know the different use of CSS*/
+            {
+                background-color: #434343;
+                color: white;
+            }
+
+            @media screen and (max-width: 700px)
+		    {
+                
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="mainbar">
+                <center><h1>My Feeds</h1></center>
+
+                <ul>
+                <% newsfeed.forEach(function(todo, index) { %>
+                    <li><a href="/feed/delete/<%= index %>">✘</a> <%= todo.state %> <img src="<%= todo.kimg %>" /></li>
+                <% }); %>
+                </ul>
+
+            </div>
+        </div>
+
+            <div class="postbar">
+                <form action="/feed/new/" method="post">
+
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4" name="mystatus" id="mystatus" placeholder="What Do You Have In Mind?" autofocus></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" name="image" id="image" class="form-control" title="Select Image" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" />
+                    </div>
+
+
+                        <button type="submit" class="form-control btn btn-success">Post</button>
+                    </p>
+                </form>
+            </div>
+
+    </body>
+</html>
